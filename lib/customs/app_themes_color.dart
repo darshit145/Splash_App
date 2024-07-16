@@ -10,3 +10,12 @@ Color textFieldBackGround=Color(CustomColors.customColor("f8f8fa"));
 
 
 TextStyle headingText=TextStyle(color: Colors.black,wordSpacing: 6,fontSize: 30,fontWeight: FontWeight.w600);
+
+class Colours{
+  static Color blueThemeColor=themeColorBlue;
+  static Color greenButtonColor=buttonColor;
+  static Color backGroungDulWhite=textFieldBackGround;
+  static Color backGroungWhite=backGroungWhite;
+  static Color black=Colors.black;
+  static Color white=Colors.white;
+}

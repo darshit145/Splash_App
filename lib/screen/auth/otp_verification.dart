@@ -1,7 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
+import 'package:splash/screen/tranction_screen.dart';
 import '../../customs/app_themes_color.dart';
 import '../../customs/custom_textfield.dart';
 import '../../customs/resources.dart';
@@ -15,9 +14,11 @@ class OtpVerification extends StatefulWidget {
 class _OtpVerificationState extends State<OtpVerification> {
   late final TextEditingController pinController;
   late final GlobalKey<FormState> formKey;
+  int second=30;
 
   @override
   void initState() {
+    operationOnSecond();
     super.initState();
     formKey = GlobalKey<FormState>();
     pinController = TextEditingController();
@@ -56,7 +57,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                 height: HEIGHT100*10,
                 child: Image.asset(ResourcesImage.logoImage),
               ),
-          
+
               Text("Varification \nCode",style: headingText,),
               PX(HEIGHT*6/100),
               Text("Verify Your Account By Entering the 4 digit\ncode"),
@@ -67,8 +68,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                   padding: const EdgeInsets.only(left: 20,right: 20),
                   child: Pinput(
                     validator: (value) {
-                      if(value!=null && int.parse(value)<9999){
-                        print(value);
+                      if(value?.length==4 && int.tryParse(value!)!<=9999){
                         return null;
                       }
                       return "Enter Number";
@@ -79,8 +79,8 @@ class _OtpVerificationState extends State<OtpVerification> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     length: 4,
                     defaultPinTheme: pintheme,
-          
-          
+
+
                   ),
                 ),
               ),
@@ -88,16 +88,29 @@ class _OtpVerificationState extends State<OtpVerification> {
               GestureDetector(
                 onTap: () {
                   if(formKey.currentState!.validate()){
-                    print("okkkkkkkkkkk");
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => TranctionScreen(),));
                   }
                 },
                   child: CustomTextfield.themeButton(wid: double.infinity,btnName: "Verify")),
-          
+
               // IconButton(onPressed: () => Navigator.push(context,MaterialPageRoute(builder: (context) => Demo(),)), icon: Icon(Icons.add))
+              PX(HEIGHT100*23),
+              // Expanded(child: SizedBox()),
+
+              Center(child: Text("Ressend Code in 00:$second",style: TextStyle(color: Colors.blue),))
             ],
           ),
         ),
       ),
     );
+  }
+
+  void operationOnSecond() async{
+    while(second>0){
+      second--;
+      await Future.delayed(Duration(seconds: 1),(){
+        setState(() {});
+      });
+    }
   }
 }

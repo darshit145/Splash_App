@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.6
   flutter_advanced_switch: ^3.1.0
   pinput:
+  flutter_credit_card: ^4.0.1
+  u_credit_card:
 dev_dependencies:
   flutter_test:
     sdk: flutter
