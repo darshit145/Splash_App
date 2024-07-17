@@ -12,3 +12,13 @@ class ResourcesImage{
 static String logoImage="assets/loge2.png";
 
 }
+Widget profileFreame=Container(
+  height: HEIGHT100*7,
+  width: HEIGHT100*7,
+  decoration: BoxDecoration(
+      color: Colors.black,
+      borderRadius: BorderRadius.all(
+          Radius.circular(20)
+      )
+  ),
+);

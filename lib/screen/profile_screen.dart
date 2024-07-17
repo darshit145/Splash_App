@@ -26,15 +26,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // ListTile(
-                  //   leading: Icon(
-                  //     Icons.menu_open_rounded,
-                  //     color: Colours.white,
-                  //   ),
-                  //   trailing: CircleAvatar(
-                  //     radius: HEIGHT100 * 2.8,
-                  //   ),
-                  // ),
+
                   Container(
                     // height: HEIGHT100*2.8,
                     child: Row(
