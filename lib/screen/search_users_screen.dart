@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:splash/customs/resources.dart';
+import 'package:splash/screen/chat_screen.dart';
 
 import '../customs/app_themes_color.dart';
 import '../customs/custom_textfield.dart';
@@ -141,14 +143,20 @@ Widget customListTileWithoutTreaileaing({required String mail,required String na
     children: [
       ListTile(
         onTap: () => Navigator.push(context,MaterialPageRoute(builder: (context) => MoneySendScreen(name: name,),)),
-        leading: Container(
-          height: HEIGHT100*7,
-          width: HEIGHT100*7,
-          decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.all(
-                  Radius.circular(20)
-              )
+        leading: GestureDetector(
+          onLongPress: () {
+            bottomSheeterShowe(context);
+          },
+          onTap: () => Navigator.push(context,MaterialPageRoute(builder: (context) => ChatScreen(),)),
+          child: Container(
+            height: HEIGHT100*7,
+            width: HEIGHT100*7,
+            decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.all(
+                    Radius.circular(20)
+                )
+            ),
           ),
         ),
         title: Text(name,style: TextStyle(color: Colours.black,fontWeight: FontWeight.w600,fontSize: 16),),
@@ -159,6 +167,60 @@ Widget customListTileWithoutTreaileaing({required String mail,required String na
       Divider(indent: 20,endIndent: 20,),
       // PX(HEIGHT100*1),
 
+    ],
+  );
+}
+void bottomSheeterShowe(ct){
+  showModalBottomSheet(
+    backgroundColor: Colors.white,
+    showDragHandle: true,
+    context: ct, builder: (context) => StatefulBuilder(builder: (context, setState) {
+    return Container(
+      height: 300,
+      width: double.infinity,
+      color: Colors.white,
+      child: Column(
+        children: [
+          Container(
+            width: 59,
+            height: 59,
+            decoration: BoxDecoration(
+                color: Colors.teal,
+              borderRadius: BorderRadius.all(
+                Radius.circular(10)
+              )
+            ),
+          ),
+          Text("Name SurName",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500,fontSize: 15),),
+          Text("MOBILE NO:",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w400,fontSize: 14),),
+          PX(40),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              getOptions(icon: Icons.account_balance_sharp,data: "Bank"),
+              getOptions(data: "Camera",icon: Icons.camera_alt),
+              getOptions(icon: Icons.abc,data: "LKG"),
+
+
+            ],
+          )
+
+        ],
+      ),
+
+    );
+  },),);
+}
+Widget getOptions({required IconData icon,required String data}){
+  return Column(
+    children: [
+      CircleAvatar(
+        backgroundColor: Colors.tealAccent.shade100,
+        radius: 30,
+        child: Icon(icon,size: 30,color: Colors.white,),
+      ),
+      PX10,
+      Text(data,style: TextStyle(fontWeight: FontWeight.w500,fontSize: 16),),
     ],
   );
 }

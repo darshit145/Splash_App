@@ -95,8 +95,13 @@ class _TranctionScreenState extends State<TranctionScreen> {
                       ),
                     ),
                   ),
-                  trailing: CircleAvatar(
-                    radius: HEIGHT100 * 2.8,
+                  trailing: GestureDetector(
+                    onTap: () {
+                      prifileDetailedScreen(context);
+                    },
+                    child: CircleAvatar(
+                      radius: HEIGHT100 * 2.8,
+                    ),
                   ),
                 ),
                 PX(HEIGHT100 * 8),
@@ -256,6 +261,59 @@ Widget drawerButtons({required  IconData icons,required String name}){
         PX(25),
         Text(name)
 
+
+      ],
+    ),
+  );
+}
+void prifileDetailedScreen(BuildContext context){
+  showModalBottomSheet(context: context,
+    shape: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(40))
+    ),
+    isScrollControlled: true,
+    backgroundColor: Colors.white,
+    builder: (context) {
+    return StatefulBuilder(builder: (context, setState) {
+      return Container(
+        width: WIDTH100*100,
+        height: HEIGHT100*80,
+        child: Column(
+          children: [
+            PX(30),
+            Container(
+              height: 65,
+              width: 65,
+              decoration: BoxDecoration(
+                color: Colors.black12,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(15)
+                )
+              ),
+            ),
+            PX(HEIGHT100*3),
+            Text("User Name",style: TextStyle(color: Colors.black,fontSize: 17,fontWeight: FontWeight.w500),),
+
+            Text("XYG@gmail.com",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.w400),),
+            Expanded(
+              child: Container(
+                width: WIDTH100*86,
+                child: GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2), itemBuilder: (context, index) {
+                  return customContainer(icon: Icons.account_balance,content: "okok");
+                },itemCount: 6,),
+              ),
+            )
+
+          ],
+        ),
+      );
+    },);
+  },);
+}
+Widget gridCustomContainer(){
+  return Container(
+    child: Column(
+      children: [
 
       ],
     ),
